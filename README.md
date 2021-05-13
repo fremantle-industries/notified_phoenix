@@ -18,22 +18,21 @@ end
 
 ## Usage
 
-![badge](./docs/badge.png)
+### Live Badge
 
 ```elixir
 <%= live_render(@socket, NotifiedPhoenix.BadgeLive, [] %>
 ```
 
-![list](./docs/list.png)
+![badge](./docs/badge.png)
+
+### Live List
 
 ```elixir
-notification_1 = %Notified.Notification{message: "Order has been created", seen_at: DateTime.utc_now(), seen: true}
-notification_2 = %Notified.Notification{message: "Order has been shipped", seen_at: DateTime.utc_now(), seen: true}
-notification_3 = %Notified.Notification{message: "Order has been delivered", seen_at: nil, seen: false}
-items = [notification_1, notification_2, notification_3]
-
 <%= live_render(@socket, NotifiedPhoenix.ListLive, class: "my-custom-style" %>
 ```
+
+![list](./docs/list.png)
 
 ## Authors
 
