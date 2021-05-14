@@ -23,7 +23,7 @@ defmodule NotifiedPhoenix.MixProject do
 
   defp deps do
     [
-      {:notified, "~> 0.0.2"},
+      {:notified, "~> 0.0.3"},
       {:phoenix_html, "~> 2.14"},
       {:phoenix_live_view, "~> 0.15"},
       {:ex_machina, "~> 2.7", only: [:dev, :test]},
