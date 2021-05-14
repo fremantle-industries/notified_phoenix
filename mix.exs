@@ -5,7 +5,7 @@ defmodule NotifiedPhoenix.MixProject do
     [
       app: :notified_phoenix,
       version: "0.0.1",
-      elixir: "~> 1.10",
+      elixir: "~> 1.11",
       package: package(),
       start_permanent: Mix.env() == :prod,
       description: description(),
