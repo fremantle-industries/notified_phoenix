@@ -4,6 +4,8 @@
 
 Phoenix live views for [notified](https://github.com/fremantle-industries/notified)
 
+[![workbench-notifications](./docs/workbench-notifications.png)](https://youtu.be/NJS0YTsKoiQ)
+
 ## Installation
 
 Add the `notified_phoenix` package to your list of dependencies in `mix.exs`:
