@@ -13,7 +13,7 @@ Add the `notified_phoenix` package to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:notified_phoenix, "~> 0.0.1"}
+    {:notified_phoenix, "~> 0.0.2"}
   ]
 end
 ```
