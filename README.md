@@ -36,6 +36,20 @@ end
 
 ![list](./docs/list.png)
 
+## Receivers
+
+`NotifiedPhoenix` ships with extra receivers that can be used within modern web browsers
+
+- `NotifiedPhoenix.Receivers.Speech` - Uses the experimental [SpeechSynthesis](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis) API to read the subject of the notification
+- `NotifiedPhoenix.Receivers.BrowserNotification` - Uses the browsers native [Notification](https://developer.mozilla.org/en-US/docs/Web/API/notification) API to display a notification on the host system
+
+```elixir
+config :notified, receivers: [
+  {NotifiedPhoenix.Receivers.Speech, []}
+  {NotifiedPhoenix.Receivers.BrowserNotification, []}
+]
+```
+
 ## Authors
 
 - Alex Kwiatkowski - alex+git@fremantle.io

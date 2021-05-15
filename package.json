@@ -1,0 +1,12 @@
+{
+  "name": "phoenix_html",
+  "version": "0.0.2",
+  "main": "./priv/static/notified_phoenix.js",
+  "repository": {},
+  "files": [
+    "README.md",
+    "LICENSE.md",
+    "package.json",
+    "priv/static/notified_phoenix.js"
+  ]
+}

@@ -1,10 +1,13 @@
 defmodule NotifiedPhoenix.MixProject do
   use Mix.Project
 
+  # Also change package.json version
+  @version "0.0.2"
+
   def project do
     [
       app: :notified_phoenix,
-      version: "0.0.2",
+      version: @version,
       elixir: "~> 1.11",
       package: package(),
       start_permanent: Mix.env() == :prod,
@@ -23,7 +26,7 @@ defmodule NotifiedPhoenix.MixProject do
 
   defp deps do
     [
-      {:notified, "~> 0.0.3"},
+      {:notified, "~> 0.0.4"},
       {:phoenix_html, "~> 2.14"},
       {:phoenix_live_view, "~> 0.15"},
       {:ex_machina, "~> 2.7", only: [:dev, :test]},
@@ -44,7 +47,8 @@ defmodule NotifiedPhoenix.MixProject do
     %{
       licenses: ["MIT"],
       maintainers: ["Alex Kwiatkowski"],
-      links: %{"GitHub" => "https://github.com/fremantle-industries/notified_phoenix"}
+      links: %{"GitHub" => "https://github.com/fremantle-industries/notified_phoenix"},
+      files: ~w(lib priv LICENSE mix.exs package.json README.md)
     }
   end
 

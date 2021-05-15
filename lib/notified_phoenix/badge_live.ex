@@ -2,12 +2,16 @@ defmodule NotifiedPhoenix.BadgeLive do
   use Phoenix.LiveView
   import Phoenix.HTML.Link
 
+  alias Notified.{Config, Topic}
+
   @default_class "border rounded-xl px-2 py-1 font-bold text-white bg-red-500 border-red-500"
 
   @impl true
   def mount(_params, _session, socket) do
-    Phoenix.PubSub.subscribe(Notified.Config.pubsub_server(), Notified.Topic.create("*"))
-    Phoenix.PubSub.subscribe(Notified.Config.pubsub_server(), Notified.Topic.mark_seen("*"))
+    pubsub_server = Config.pubsub_server()
+    Phoenix.PubSub.subscribe(pubsub_server, Topic.create("*"))
+    Phoenix.PubSub.subscribe(pubsub_server, Topic.mark_seen("*"))
+    Phoenix.PubSub.subscribe(pubsub_server, Topic.receiver_sent("*"))
 
     socket =
       socket
@@ -23,7 +27,9 @@ defmodule NotifiedPhoenix.BadgeLive do
     class = if assigns.unseen == 0, do: "opacity-50 #{assigns.class}", else: assigns.class
 
     ~L"""
-    <%= link unseen, to: to(), class: class %>
+    <div id="notified-phoenix-badge" phx-hook="NotifiedPhoenix">
+      <%= link unseen, to: to(), class: class %>
+    </div>
     """
   end
 
@@ -35,6 +41,32 @@ defmodule NotifiedPhoenix.BadgeLive do
       |> assign(:unseen, Notified.count_unseen())
 
     {:noreply, socket}
+  end
+
+  @impl true
+  def handle_info({:notified, :receiver_sent, receiver_and_notification}, socket) do
+    case receiver_and_notification do
+      {%NotifiedPhoenix.Receivers.Speech{}, notification} ->
+        event = "notified_phoenix:receiver_sent:speech"
+        payload = %{subject: notification.subject}
+        socket = push_event(socket, event, payload)
+        {:noreply, socket}
+
+      {%NotifiedPhoenix.Receivers.BrowserNotification{}, notification} ->
+        event = "notified_phoenix:receiver_sent:browser_notification"
+
+        payload = %{
+          subject: notification.subject,
+          message: notification.message,
+          tags: notification.tags
+        }
+
+        socket = push_event(socket, event, payload)
+        {:noreply, socket}
+
+      _ ->
+        {:noreply, socket}
+    end
   end
 
   defp to do
