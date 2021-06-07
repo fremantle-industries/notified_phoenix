@@ -83,7 +83,9 @@ defmodule NotifiedPhoenix.ListLive do
   end
 
   @impl true
-  def handle_event("search", %{"query" => query}, socket) do
+  def handle_event("search", params, socket) do
+    query = Map.get(params, "query")
+
     socket =
       socket
       |> assign(:query, query)
