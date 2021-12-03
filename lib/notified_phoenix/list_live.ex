@@ -27,7 +27,7 @@ defmodule NotifiedPhoenix.ListLive do
 
   @impl true
   def render(assigns) do
-    ~L"""
+    ~H"""
     <div>
       <h2 class="text-3xl">Notifications</h2>
 
@@ -36,7 +36,7 @@ defmodule NotifiedPhoenix.ListLive do
           <input
             type="text"
             name="query"
-            value="<%= @query %>"
+            value={@query}
             placeholder="Search"
             autocomplete="off"
             class="bg-gray-100 opacity-25"
@@ -58,12 +58,7 @@ defmodule NotifiedPhoenix.ListLive do
 
       <%= if Enum.any?(assigns.notifications) do %>
         <%= for n <- assigns.notifications do %>
-          <%= live_component(
-            @socket,
-            NotifiedPhoenix.NotificationListItemComponent,
-            id: "notification-list-item-#{n.id}",
-            notification: n) %>
-
+          <.live_component module={NotifiedPhoenix.NotificationListItemComponent} id={"notification-list-item-#{n.id}"} notification={n}) />
           <hr class="mx-4" />
         <% end %>
       <% else %>

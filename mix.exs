@@ -27,8 +27,8 @@ defmodule NotifiedPhoenix.MixProject do
   defp deps do
     [
       {:notified, "~> 0.0.6"},
-      {:phoenix_html, "~> 2.14 or ~> 3.0"},
-      {:phoenix_live_view, "~> 0.15"},
+      {:phoenix_html, "~> 3.0"},
+      {:phoenix_live_view, "~> 0.17"},
       {:ex_machina, "~> 2.7", only: [:dev, :test]},
       {:ex_doc, ">= 0.0.0", only: :dev},
       {:dialyxir, "~> 1.0", only: :dev, runtime: false},
