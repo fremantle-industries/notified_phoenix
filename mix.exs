@@ -2,7 +2,7 @@ defmodule NotifiedPhoenix.MixProject do
   use Mix.Project
 
   # Also change package.json version
-  @version "0.0.6"
+  @version "0.0.7"
 
   def project do
     [
